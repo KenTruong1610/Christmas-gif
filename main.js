@@ -12,6 +12,26 @@ const makeSnow = () => {
     snow.style.animationDuration = Math.random() * 3 + 2 + "s";
     document.body.appendChild(snow);
     setTimeout(() => snow.remove(), 5000);
-}
+};
 
 setInterval(makeSnow, 20);
+
+// Phát nhạc tự động và thêm nút điều khiển nhạc
+window.addEventListener('load', () => {
+    const music = document.getElementById('background-music');
+    const musicToggleButton = document.getElementById('music-toggle-button');
+
+    // Tự động phát nhạc (nếu trình duyệt cho phép)
+    music.play().catch((error) => {
+        console.log('Trình duyệt đã chặn âm thanh tự động:', error);
+    });
+
+    // Thay đổi trạng thái khi nhấn nút ⏯️
+    musicToggleButton.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+        } else {
+            music.pause();
+        }
+    });
+});
